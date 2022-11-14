@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import {
   FilterContainer,
   Input,
@@ -8,39 +9,53 @@ import {
   ItensContainer,
   ButtonSearch,
   SearchContainer,
-  Svg
+  Svg,
+  ResponseContainer,
+  Response,
+  FlagImage,
+  ItensResponse,
+  InfoContainer
 } from './style'
 interface Props {
   selected: string
   setSelected: React.Dispatch<React.SetStateAction<string>>
+}
+interface Never {
+  ccn3: string
+  flags: any
+  name: any
+  population: number
+  region: string
 }
 
 export default function Filter(props: Props) {
   const [isActive, setIsActive] = useState(false)
   const options = ['Africa', 'America', 'Asia', 'Europe', 'Oceania', 'All']
   const [regions, setRegions] = useState('all')
+  const [response, setResponse] = useState([])
 
   useEffect(() => {
     fetch(`https://restcountries.com/v3.1/${regions}`)
       .then(async (response) => await response.json())
       .then((response) => {
         console.log(response)
+        setResponse(response)
       })
       .catch((error) => console.error(error))
-  }, [regions, setRegions])
+  }, [regions])
 
-  function filterRegion() {
-    if (props.selected === 'Africa') {
+  function filterRegion(currentRegion: string) {
+    if (currentRegion === 'Africa') {
       setRegions('region/africa')
-    } else if (props.selected === 'America') {
+    } else if (currentRegion === 'America') {
       setRegions('region/america')
-    } else if (props.selected === 'Asia') {
+    } else if (currentRegion === 'Asia') {
       setRegions('region/asia')
-    } else if (props.selected === 'Europe') {
+    } else if (currentRegion === 'Europe') {
       setRegions('region/europe')
-    } else if (props.selected === 'Oceania') {
+    } else if (currentRegion === 'Oceania') {
       setRegions('region/oceania')
-    } else if (props.selected === 'All') {
+    } else if (currentRegion === 'All') {
       setRegions('all')
       props.setSelected('Filter by Region')
     }
@@ -77,7 +92,7 @@ export default function Filter(props: Props) {
                 onClick={(e) => {
                   props.setSelected(option)
                   setIsActive(false)
-                  filterRegion()
+                  filterRegion(option)
                 }}
               >
                 {option}
@@ -86,6 +101,20 @@ export default function Filter(props: Props) {
           </ItensContainer>
         )}
       </DropContainer>
+      <ResponseContainer>
+        <ItensResponse>
+          {response.map((countri: Never) => (
+            <Link to={'/info'} key={countri.ccn3}>
+              <Response>
+                <FlagImage src={countri.flags.png} />
+                <InfoContainer>{countri.name.official}</InfoContainer>
+                <InfoContainer>Population: {countri.population}</InfoContainer>
+                <InfoContainer>Region: {countri.region}</InfoContainer>
+              </Response>
+            </Link>
+          ))}
+        </ItensResponse>
+      </ResponseContainer>
     </FilterContainer>
   )
 }

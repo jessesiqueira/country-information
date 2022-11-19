@@ -16,8 +16,8 @@ body{
   background-color: ${(props) => props.theme.colors.background};
 }
 #root{
-  display: flex;
-  flex-direction: column;
   min-height: 100vh;
+  justify-items: center;
 }
+
 `

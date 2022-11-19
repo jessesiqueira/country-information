@@ -5,7 +5,7 @@ import light from '../styles/themes/light'
 import dark from '../styles/themes/dark'
 import GlobalStyle from '../index'
 import usePersistedState from '../utils/usePersistedState'
-import InfoMain from '../components/Info/InfoContainer'
+import InfoMain from '../components/Info/InfoMain'
 
 export default function Info() {
   const [lightMode, setLightMode] = useState('Dark Mode')

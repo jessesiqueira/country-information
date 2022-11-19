@@ -4,6 +4,8 @@ export const FilterContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 30px;
+  display: flex;
+  justify-items: center;
   padding-left: 55px;
   padding-right: 55px;
 `
@@ -16,7 +18,9 @@ export const Input = styled.input`
   color: ${(props) => props.theme.font.colors};
   font-size: 18px;
 `
-export const DropContainer = styled.div``
+export const DropContainer = styled.div`
+  z-index: 1;
+`
 
 export const DropButton = styled.div`
   display: flex;
@@ -69,6 +73,7 @@ export const SearchContainer = styled.div`
   box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.06);
   background-color: ${(props) => props.theme.colors.primary};
   height: 60px;
+  z-index: 2;
 `
 export const Svg = styled.svg`
   color: ${(props) => props.theme.font.colors};
@@ -78,14 +83,17 @@ export const ResponseContainer = styled.main`
   margin-top: 100px;
   display: flex;
   justify-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1%;
 `
 export const Response = styled.div`
   justify-items: center;
   background-color: ${(props) => props.theme.colors.primary};
-  margin-top: 10px;
-  width: 300px;
-  height: 300px;
-  margin-left: 10px;
+  margin-top: 0px;
+  width: 100%;
+  height: 105%;
   border-radius: 5px;
   box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.06);
   cursor: pointer;
@@ -95,20 +103,47 @@ export const Response = styled.div`
 `
 
 export const FlagImage = styled.img`
-  height: 160px;
+  height: 180px;
   width: 100%;
 `
 export const ItensResponse = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  margin-top: 10px;
-  gap: 20px;
+  gap: 30px;
   color: ${(props) => props.theme.font.colors};
   position: relative;
-  left: 50%;
-  transform: translateX(-33%);
+  width: 85%;
+  height: auto;
 `
 export const InfoContainer = styled.div`
   padding-left: 15px;
   margin-top: 15px;
+`
+export const ItemInfo = styled.span`
+  font-weight: lighter;
+  padding-left: 5px;
+`
+
+export const RespostSearch = styled.div``
+
+export const ResponseListIten = styled.div`
+  background-color: ${(props) => props.theme.colors.primary};
+  width: 100%;
+  height: 60px;
+  overflow: hidden;
+  overflow-y: auto;
+  border-radius: 5px;
+  padding-left: 10px;
+  align-items: center;
+  display: flex;
+  :hover {
+    background-color: ${(props) => props.theme.colors.hover};
+  }
+`
+export const ResponseListIten1 = styled.div`
+  overflow: hidden;
+  overflow-y: auto;
+  height: 180px;
+  border-radius: 5px;
+  background-color: ${(props) => props.theme.colors.primary};
 `

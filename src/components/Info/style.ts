@@ -19,3 +19,35 @@ export const BackButton = styled.button`
     background-color: ${(props) => props.theme.colors.hover};
   }
 `
+export const Flags = styled.img`
+  width: 100%;
+`
+
+export const Infos = styled.div`
+  margin-top: 19px;
+  height: 18px;
+`
+
+export const InfosContainer = styled.div`
+  display: flex;
+  gap: 9%;
+`
+
+export const FlagsContainer = styled.div`
+  width: 40%;
+  margin-left: 2%;
+`
+
+export const BorderCountries = styled.div``
+
+export const InfosSubContainer = styled.div`
+  margin-top: 7%;
+`
+export const ContainerInfo = styled.div`
+  display: flex;
+  gap: 90px;
+`
+export const ItemInfo = styled.span`
+  font-weight: lighter;
+  padding-left: 5px;
+`

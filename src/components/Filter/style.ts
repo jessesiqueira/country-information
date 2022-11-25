@@ -8,6 +8,7 @@ export const FilterContainer = styled.div`
   justify-items: center;
   padding-left: 55px;
   padding-right: 55px;
+  justify-content: center;
 `
 export const Input = styled.input`
   background-color: ${(props) => props.theme.colors.primary};
@@ -66,7 +67,6 @@ export const ButtonSearch = styled.button`
   border-radius: 5px;
   background-color: ${(props) => props.theme.colors.primary};
   border: none;
-  cursor: pointer;
 `
 export const SearchContainer = styled.div`
   border-radius: 5px;
@@ -74,6 +74,7 @@ export const SearchContainer = styled.div`
   background-color: ${(props) => props.theme.colors.primary};
   height: 60px;
   z-index: 2;
+  width: 380px;
 `
 export const Svg = styled.svg`
   color: ${(props) => props.theme.font.colors};
@@ -86,7 +87,6 @@ export const ResponseContainer = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 1%;
 `
 export const Response = styled.div`
   justify-items: center;
@@ -143,7 +143,14 @@ export const ResponseListIten = styled.div`
 export const ResponseListIten1 = styled.div`
   overflow: hidden;
   overflow-y: auto;
-  height: 180px;
+  max-height: 180px;
   border-radius: 5px;
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.06);
+  margin-top: 5px;
   background-color: ${(props) => props.theme.colors.primary};
+`
+export const AllContainerSearch = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 `

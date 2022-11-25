@@ -7,7 +7,8 @@ import {
   InfosContainer,
   InfosSubContainer,
   ContainerInfo,
-  ItemInfo
+  ItemInfo,
+  AllInfoContainer
 } from './style'
 import { Link, Params, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
@@ -41,7 +42,8 @@ export default function InfoMain() {
       })
       .catch((error) => console.error(error))
   }, [countriUrl])
-  const infoTest = info[0]
+
+  const infoTest: Never = info[0]
   console.log(infoTest)
 
   return (
@@ -51,54 +53,72 @@ export default function InfoMain() {
       </Link>
       <InfosContainer>
         <FlagsContainer>
-          {infoTest && <Flags src={infoTest.flags.png} />}
+          <Flags src={infoTest?.flags.png} />
         </FlagsContainer>
-        <ContainerInfo>
-          <InfosSubContainer>
-            <Infos>
-              Native Name:
-              <ItemInfo>
-                {infoTest && (
-                  <>
-                    {Object.values(infoTest.name.nativeName).map(
-                      (native) => native.common
-                    )}
-                  </>
-                )}
-              </ItemInfo>
-            </Infos>
-            <Infos>
-              Population:
-              <ItemInfo>{infoTest && <>{infoTest.population}</>}</ItemInfo>
-            </Infos>
-            <Infos>
-              Region:<ItemInfo>{infoTest && <>{infoTest.region}</>}</ItemInfo>
-            </Infos>
-            <Infos>
-              Sub Region:
-              <ItemInfo>{infoTest && <>{infoTest.subregion}</>}</ItemInfo>
-            </Infos>
-            <Infos>
-              Capital:<ItemInfo>{infoTest && <>{infoTest.capital}</>}</ItemInfo>
-            </Infos>
-          </InfosSubContainer>
-          <InfosSubContainer>
-            <Infos>
-              Top Level Domain:
-              <ItemInfo>{infoTest && <>{infoTest.tld}</>}</ItemInfo>
-            </Infos>
-            <Infos>
-              Currencies:
-              <ItemInfo>{infoTest && <>{Object.values(infoTest.currencies).map(currencie => currencie.name)}</>}</ItemInfo>
-            </Infos>
-            <Infos>
-              Languages:
-              <ItemInfo>
-                {infoTest && <>{Object.values(infoTest.languages)}</>}
-              </ItemInfo>
-            </Infos>
-          </InfosSubContainer>
-        </ContainerInfo>
+        <AllInfoContainer>
+          <h1>{infoTest?.name.official}</h1>
+          <ContainerInfo>
+            <InfosSubContainer>
+              <Infos>
+                Native Names:
+                <ItemInfo>
+                  {infoTest && (
+                    <>
+                      {Object.values(infoTest.name.nativeName)
+                        .map((native) => native.common)
+                        .join(', ')}
+                    </>
+                  )}
+                </ItemInfo>
+              </Infos>
+              <Infos>
+                Population:
+                <ItemInfo>
+                  {String(infoTest?.population).replace(
+                    /(.)(?=(\d{3})+$)/g,
+                    '$1,'
+                  )}
+                </ItemInfo>
+              </Infos>
+              <Infos>
+                Region:<ItemInfo>{infoTest?.region}</ItemInfo>
+              </Infos>
+              <Infos>
+                Sub Region:
+                <ItemInfo>{infoTest?.subregion}</ItemInfo>
+              </Infos>
+              <Infos>
+                Capital:<ItemInfo>{infoTest?.capital}</ItemInfo>
+              </Infos>
+            </InfosSubContainer>
+            <InfosSubContainer>
+              <Infos>
+                Top Level Domain:
+                <ItemInfo>{infoTest?.tld}</ItemInfo>
+              </Infos>
+              <Infos>
+                Currencies:
+                <ItemInfo>
+                  {infoTest && (
+                    <>
+                      {Object.values(infoTest.currencies)
+                        .map((currencie) => currencie.name)
+                        .join(', ')}
+                    </>
+                  )}
+                </ItemInfo>
+              </Infos>
+              <Infos>
+                Languages:
+                <ItemInfo>
+                  {infoTest && (
+                    <>{Object.values(infoTest.languages).join(', ')}</>
+                  )}
+                </ItemInfo>
+              </Infos>
+            </InfosSubContainer>
+          </ContainerInfo>
+        </AllInfoContainer>
       </InfosContainer>
     </InfoContainer>
   )

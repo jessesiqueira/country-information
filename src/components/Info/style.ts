@@ -51,3 +51,4 @@ export const ItemInfo = styled.span`
   font-weight: lighter;
   padding-left: 5px;
 `
+export const AllInfoContainer = styled.div``

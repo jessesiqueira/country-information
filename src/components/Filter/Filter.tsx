@@ -19,7 +19,8 @@ import {
   ItemInfo,
   RespostSearch,
   ResponseListIten,
-  ResponseListIten1
+  ResponseListIten1,
+  AllContainerSearch
 } from './style'
 interface Props {
   selected: string
@@ -81,65 +82,66 @@ export default function Filter(props: Props) {
       props.setSelected('Filter by Region')
     }
   }
-  console.log(regions)
 
   return (
     <FilterContainer>
-      <SearchContainer>
-        <ButtonSearch>
-          <Svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            className="bi bi-search"
-            viewBox="0 0 16 16"
-          >
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-          </Svg>
-        </ButtonSearch>
-        <Input
-          placeholder="Search for a country..."
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <RespostSearch>
-          {search !== '' && (
-            <ResponseListIten1>
-              {responseSearch.map((countri: Never) => (
-                <Link to={`/info/${countri.ccn3}`} key={countri.ccn3}>
-                  <ResponseListIten>
+      <AllContainerSearch>
+        <SearchContainer>
+          <ButtonSearch>
+            <Svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              className="bi bi-search"
+              viewBox="0 0 16 16"
+            >
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+            </Svg>
+          </ButtonSearch>
+          <Input
+            placeholder="Search for a country..."
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <RespostSearch>
+            {search !== '' && (
+              <ResponseListIten1>
+                {responseSearch.map((countri: Never) => (
+                  <Link to={`/info/${countri.ccn3}`} key={countri.ccn3}>
                     <ResponseListIten>
-                      {countri.name.common} {countri.flag}
+                      <ResponseListIten>
+                        {countri.name.common} {countri.flag}
+                      </ResponseListIten>
                     </ResponseListIten>
-                  </ResponseListIten>
-                </Link>
-              ))}
-            </ResponseListIten1>
-          )}
-        </RespostSearch>
-      </SearchContainer>
-      <DropContainer>
-        <DropButton onClick={(e) => setIsActive(!isActive)}>
-          {props.selected}
-        </DropButton>
+                  </Link>
+                ))}
+              </ResponseListIten1>
+            )}
+          </RespostSearch>
+        </SearchContainer>
+        <DropContainer>
+          <DropButton onClick={(e) => setIsActive(!isActive)}>
+            {props.selected}
+          </DropButton>
 
-        {isActive && (
-          <ItensContainer>
-            {options.map((option) => (
-              <DropIten
-                key={option}
-                onClick={(e) => {
-                  props.setSelected(option)
-                  setIsActive(false)
-                  filterRegion(option)
-                }}
-              >
-                {option}
-              </DropIten>
-            ))}
-          </ItensContainer>
-        )}
-      </DropContainer>
+          {isActive && (
+            <ItensContainer>
+              {options.map((option) => (
+                <DropIten
+                  key={option}
+                  onClick={(e) => {
+                    props.setSelected(option)
+                    setIsActive(false)
+                    filterRegion(option)
+                  }}
+                >
+                  {option}
+                </DropIten>
+              ))}
+            </ItensContainer>
+          )}
+        </DropContainer>
+      </AllContainerSearch>
       <ResponseContainer>
         <ItensResponse>
           {response.map((countri: Never) => (
@@ -152,7 +154,13 @@ export default function Filter(props: Props) {
                 <FlagImage src={countri.flags.png} />
                 <InfoContainer>{countri.name.official}</InfoContainer>
                 <InfoContainer>
-                  Population: <ItemInfo>{countri.population}</ItemInfo>
+                  Population:
+                  <ItemInfo>
+                    {String(countri.population).replace(
+                      /(.)(?=(\d{3})+$)/g,
+                      '$1,'
+                    )}
+                  </ItemInfo>
                 </InfoContainer>
                 <InfoContainer>
                   Region:<ItemInfo> {countri.region}</ItemInfo>

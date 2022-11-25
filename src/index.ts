@@ -13,7 +13,7 @@ export default createGlobalStyle`
 body{
   min-height: 100vh;
   width: 100%;
-  background-color: ${(props) => props.theme.colors.background};
+  background-color: ${(props: any) => props.theme.colors.background};
 }
 #root{
   min-height: 100vh;

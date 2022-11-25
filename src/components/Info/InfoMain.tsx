@@ -23,6 +23,7 @@ interface Never {
   capital: string
   tld: string
   languages: any
+  currencies: any
 }
 
 export default function InfoMain() {
@@ -65,7 +66,7 @@ export default function InfoMain() {
                   {infoTest && (
                     <>
                       {Object.values(infoTest.name.nativeName)
-                        .map((native) => native.common)
+                        .map((native: any) => native.common)
                         .join(', ')}
                     </>
                   )}
@@ -102,7 +103,7 @@ export default function InfoMain() {
                   {infoTest && (
                     <>
                       {Object.values(infoTest.currencies)
-                        .map((currencie) => currencie.name)
+                        .map((currencie: any) => currencie.name)
                         .join(', ')}
                     </>
                   )}

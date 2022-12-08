@@ -8,7 +8,8 @@ import {
   InfosSubContainer,
   ContainerInfo,
   ItemInfo,
-  AllInfoContainer
+  AllInfoContainer,
+  Title
 } from './style'
 import { Link, Params, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
@@ -57,7 +58,7 @@ export default function InfoMain() {
           <Flags src={infoTest?.flags.png} />
         </FlagsContainer>
         <AllInfoContainer>
-          <h1>{infoTest?.name.official}</h1>
+          <Title>{infoTest?.name.official}</Title>
           <ContainerInfo>
             <InfosSubContainer>
               <Infos>

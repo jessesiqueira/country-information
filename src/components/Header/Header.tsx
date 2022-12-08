@@ -1,4 +1,4 @@
-import { Container, Button } from './style'
+import { Container, Button, Title } from './style'
 
 interface Props {
   toggleTheme: () => void
@@ -8,7 +8,7 @@ interface Props {
 export default function Header(props: Props) {
   return (
     <Container>
-      <h1>Where in the world?</h1>
+      <Title>Where in the world?</Title>
       <Button onClick={props.toggleTheme}>{props.lightMode}</Button>
     </Container>
   )

@@ -18,6 +18,16 @@ export const Input = styled.input`
   height: 60px;
   color: ${(props) => props.theme.font.colors};
   font-size: 18px;
+  @media screen and (max-width: 890px) {
+    background-color: ${(props) => props.theme.colors.primary};
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    height: 60px;
+    width: 100%;
+    color: ${(props) => props.theme.font.colors};
+    font-size: 18px;
+  }
 `
 export const DropContainer = styled.div`
   z-index: 1;
@@ -67,6 +77,16 @@ export const ButtonSearch = styled.button`
   border-radius: 5px;
   background-color: ${(props) => props.theme.colors.primary};
   border: none;
+
+  @media screen and (max-width: 890px) {
+    position: relative;
+    display: none;
+    height: 60px;
+    width: 60px;
+    border-radius: 5px;
+    background-color: ${(props) => props.theme.colors.primary};
+    border: none;
+  }
 `
 export const SearchContainer = styled.div`
   border-radius: 5px;
@@ -75,6 +95,15 @@ export const SearchContainer = styled.div`
   height: 60px;
   z-index: 2;
   width: 380px;
+
+  @media screen and (max-width: 860px) {
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.06);
+    background-color: ${(props) => props.theme.colors.primary};
+    height: 60px;
+    z-index: 2;
+    width: 190px;
+  }
 `
 export const Svg = styled.svg`
   color: ${(props) => props.theme.font.colors};
@@ -114,6 +143,17 @@ export const ItensResponse = styled.div`
   position: relative;
   width: 85%;
   height: auto;
+
+  @media screen and (max-width: 890px) {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 30px;
+    color: ${(props) => props.theme.font.colors};
+    position: relative;
+    width: 85%;
+    height: auto;
+    margin-top: 40px;
+  }
 `
 export const InfoContainer = styled.div`
   padding-left: 15px;
@@ -153,4 +193,11 @@ export const AllContainerSearch = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  @media screen and (max-width: 890px) {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+  }
 `

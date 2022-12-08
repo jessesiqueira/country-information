@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
-export const InfoContainer = styled.div``
+export const InfoContainer = styled.div`
+  margin-bottom: 20px;
+`
 
 export const BackButton = styled.button`
   background-color: ${(props) => props.theme.colors.primary};
